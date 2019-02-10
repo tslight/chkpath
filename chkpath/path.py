@@ -19,19 +19,27 @@ class Path:
         return os.path.isfile(self.path)
 
     def chkdir(self):
-        return self.exists() and self.isdir()
+        if self.exists():
+            if not self.isdir():
+                return "{} is not a directory.".format(self.path)
+        else:
+            return "{} doesn't exist.".format(self.path)
 
     def chkfile(self):
-        return self.exists() and self.isfile()
+        if self.exists():
+            if not self.isfile():
+                return "{} is not a file.".format(self.path)
+        else:
+            return "{} doesn't exist.".format(self.path)
 
     def mkdir(self):
-        if self.chkdir():
+        if self.exists():
             print("{} already exists.".format(self.path))
         else:
             os.mkdir(self.path)
 
     def mkfile(self):
-        if self.chkfile():
+        if self.exists():
             print("{} already exists.".format(self.path))
         else:
             open(self.path, 'a').close()
