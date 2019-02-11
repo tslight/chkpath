@@ -4,6 +4,7 @@ ISC License (ISCL) - see LICENSE file for details.
 """
 import argparse
 import os
+from .make import mkdir, mkfile
 
 
 def getargs():
@@ -16,20 +17,6 @@ def getargs():
                        help="Look for and create file.")
     parser.add_argument("path", nargs='?', default=".", help="a path to check")
     return parser.parse_args()
-
-
-def mkdir(path):
-    if os.path.exists(path):
-        print("{} already exists.".format(path))
-    else:
-        os.mkdir(path)
-
-
-def mkfile(path):
-    if os.path.exists(path):
-        print("{} already exists.".format(path))
-    else:
-        open(path, 'a').close()
 
 
 def main():
